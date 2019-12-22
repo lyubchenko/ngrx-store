@@ -1,0 +1,24 @@
+@import "~src/styles/_vars";
+
+header {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 20px;
+  background: $GRAY;
+  border: 1px solid $BORDER_COLOR;
+}
+
+li {
+  display: inline-block;
+  float: left;
+}
+
+a {
+  color: $TEXT_COLOR;
+  text-decoration: none;
+  padding: 10px 20px;
+
+  &.active {
+    font-weight: bold;
+  }
+}
