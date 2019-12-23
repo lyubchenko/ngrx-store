@@ -1,1 +1,38 @@
-<p>user-page works!</p>
+<main *ngIf="user$ | async as user">
+  <header class="row">
+    <div class="col-left logo">
+      <img src="http://lorempixel.com/60/60" alt="" class="">
+    </div>
+    <div class="col-right">
+      <h1>
+        {{user.name}}
+        <span>{{user.username}}</span>
+      </h1>
+    </div>
+  </header>
+  <section class="row info">
+    <ul class="col-left">
+      <li *ngIf="user.email">
+        <span>Email:</span>
+        <a href="mailto:{{user.email}}">{{user.email}}</a>
+      </li>
+      <li *ngIf="user.phone">
+        <span>Phone</span>
+        <a href="tel:{{user.phone}}">{{user.phone}}</a>
+      </li>
+      <li *ngIf="user.website">
+        <span>Site</span>
+        <a href="{{user.website}}" target="_blank">{{user.website}}</a>
+      </li>
+    </ul>
+    <div class="col-right" *ngIf="user.address">
+      <div class="address">
+        {{user.address.zipcode}}, {{user.address.street}}, {{user.address.suite}}, {{user.address.city}}
+      </div>
+      <div class="map" *ngIf="user.address.geo">
+        <span>MAP</span>
+        {{user.address.geo | json}}
+      </div>
+    </div>
+  </section>
+</main>

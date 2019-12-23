@@ -1,1 +1,7 @@
-<p>posts-page works!</p>
+<ng-container *ngIf="posts$ | async as post">
+  <app-table [rowData]="post"
+             [url]="url"
+             [columnsToDisplay]="columnsToDisplay"
+             [columnsToDisplayRow]="columnsToDisplayRow">
+  </app-table>
+</ng-container>

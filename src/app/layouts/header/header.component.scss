@@ -6,6 +6,7 @@ header {
   padding: 10px 20px;
   background: $GRAY;
   border: 1px solid $BORDER_COLOR;
+  box-sizing: border-box;
 }
 
 li {

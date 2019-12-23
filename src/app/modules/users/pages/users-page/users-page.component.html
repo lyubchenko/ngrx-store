@@ -1,1 +1,8 @@
-<p>users-page works!</p>
+
+<ng-container *ngIf="users$ | async as users">
+  <app-table [rowData]="users"
+             [url]="url"
+             [columnsToDisplay]="columnsToDisplay"
+             [columnsToDisplayRow]="columnsToDisplayRow">
+  </app-table>
+</ng-container>
