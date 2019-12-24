@@ -4,8 +4,9 @@ import { Store, select } from '@ngrx/store';
 import { IAppState } from '@store/state/app.state';
 import { Observable } from 'rxjs';
 import { IUser } from '@models/user.interface';
-import { selectSelectedUser } from '@store/selectors/user.selector';
-import { GetUser } from '@store/actions/user.actions';
+import { selectSelectedUser, selectSelectedUserPosts } from '@store/selectors/user.selector';
+import { GetUser, GetUserPosts } from '@store/actions/user.actions';
+import { IPost } from '@models/post.interface';
 
 @Component({
   selector: 'app-user-page',
@@ -15,6 +16,7 @@ import { GetUser } from '@store/actions/user.actions';
 export class UserPageComponent implements OnInit {
   private userId: number;
   public user$: Observable<IUser> = this.store.pipe(select(selectSelectedUser));
+  public posts$: Observable<IPost[]> = this.store.pipe(select(selectSelectedUserPosts));
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,6 +26,7 @@ export class UserPageComponent implements OnInit {
   ngOnInit() {
     this.userId = Number(this.activatedRoute.snapshot.params.id);
     this.store.dispatch(new GetUser(this.userId));
+    this.store.dispatch(new GetUserPosts(this.userId));
   }
 
 }

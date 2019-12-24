@@ -10,11 +10,14 @@ import {
   GetPostSuccess,
   EPostActions,
   GetPosts,
-  GetPostsSuccess
+  GetPostsSuccess,
+  GetPostComments,
+  GetPostCommentsSuccess
 } from '@store/actions/post.actions';
 import { PostService } from '@services/post/post.service';
 import { selectPostsList } from '@store/selectors/post.selector';
 import { IPost} from '@models/post.interface';
+import { IComment } from '@models/comment.interface';
 
 @Injectable()
 export class PostEffects {
@@ -34,6 +37,13 @@ export class PostEffects {
     ofType<GetPosts>(EPostActions.GetPosts),
     switchMap( () => this.postService.getPosts()),
     switchMap( (posts: IPost[]) => of(new GetPostsSuccess(posts)))
+  );
+
+  @Effect()
+  getPostComments$ = this.actions$.pipe(
+    ofType<GetPostComments>(EPostActions.GetPostComments),
+    switchMap( (id) => this.postService.getPostComments(id)),
+    switchMap( (comments: IComment[]) => of(new GetPostCommentsSuccess(comments)))
   );
 
   constructor(

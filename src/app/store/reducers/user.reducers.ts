@@ -15,6 +15,13 @@ export const userReducers = (state = initialUserState, action: UserActions): IUs
         selectedUser: action.payload
       };
     }
+    case EUserActions.GetUserPostsSuccess: {
+      return {
+        ...state,
+        selectedUserPosts: action.payload
+      };
+    }
+
     default:
       return state;
   }

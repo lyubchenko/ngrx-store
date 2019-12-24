@@ -1,8 +1,7 @@
-
-<ng-container *ngIf="users$ | async as users">
+<main *ngIf="users$ | async as users">
   <app-table [rowData]="users"
              [url]="url"
              [columnsToDisplay]="columnsToDisplay"
              [columnsToDisplayRow]="columnsToDisplayRow">
   </app-table>
-</ng-container>
+</main>

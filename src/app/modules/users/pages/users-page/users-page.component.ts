@@ -22,7 +22,7 @@ export class UsersPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new GetUsers());
+    // this.store.dispatch(new GetUsers());
   }
 
 }

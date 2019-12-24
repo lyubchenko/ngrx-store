@@ -1,12 +1,15 @@
 import { Action } from '@ngrx/store';
 
 import { IPost } from '@models/post.interface';
+import { IComment } from '@models/comment.interface';
 
 export enum EPostActions {
-  GetPosts = '[Post] get Posts',
-  GetPostsSuccess = '[Post] get Posts Success',
-  GetPost = '[Post] get Post',
-  GetPostSuccess = '[Post] get Post success'
+  GetPosts = '[Post] Get Posts',
+  GetPostsSuccess = '[Post] Get Posts Success',
+  GetPost = '[Post] Get Post',
+  GetPostSuccess = '[Post] Get Post success',
+  GetPostComments = '[Post] Get Post Comments',
+  GetPostCommentsSuccess = '[Post] Get Post Comments Success',
 }
 
 export class GetPosts implements Action {
@@ -28,4 +31,14 @@ export class GetPostSuccess implements Action {
   constructor(public payload: IPost) {}
 }
 
-export type PostActions = GetPosts | GetPostsSuccess | GetPost | GetPostSuccess;
+export class GetPostComments implements Action {
+  public readonly type = EPostActions.GetPostComments;
+  constructor(public payload: number) {}
+}
+
+export class GetPostCommentsSuccess implements Action {
+  public readonly type = EPostActions.GetPostCommentsSuccess;
+  constructor(public payload: IComment[]) {}
+}
+
+export type PostActions = GetPosts | GetPostsSuccess | GetPost | GetPostSuccess | GetPostComments | GetPostCommentsSuccess;

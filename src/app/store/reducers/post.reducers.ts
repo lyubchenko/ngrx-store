@@ -15,6 +15,12 @@ export const postReducers = (state = initialPostState, action: PostActions): IPo
         selectedPost: action.payload
       };
     }
+    case EPostActions.GetPostCommentsSuccess: {
+      return {
+        ...state,
+        selectedPostComments: action.payload
+      };
+    }
 
     default:
       return state;

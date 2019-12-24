@@ -10,14 +10,24 @@ import {
   GetUser,
   EUserActions,
   GetUsersSuccess,
-  GetUsers
+  GetUsers,
+  GetUserPosts,
+  GetUserPostsSuccess
 } from '@store/actions/user.actions';
 import { UserService } from '@services/user/user.service';
 import { selectUsersList } from '@store/selectors/user.selector';
-import { IUser} from '@models/user.interface';
+import { IUser } from '@models/user.interface';
+import { IPost } from '@models/post.interface';
+import { selectPostsList } from '@store/selectors/post.selector';
 
 @Injectable()
 export class UserEffects {
+  constructor(
+    private userService: UserService,
+    private actions$: Actions,
+    private store: Store<IAppState>
+  ) {}
+
   @Effect()
   getUser$ = this.actions$.pipe(
     ofType<GetUser>(EUserActions.GetUser),
@@ -36,9 +46,14 @@ export class UserEffects {
     switchMap((users: IUser[]) => of(new GetUsersSuccess(users)))
   );
 
-  constructor(
-    private userService: UserService,
-    private actions$: Actions,
-    private store: Store<IAppState>
-  ) {}
+  @Effect()
+  getUserPosts$ = this.actions$.pipe(
+    ofType<GetUserPosts>(EUserActions.GetUserPosts),
+    map(action => action.payload),
+    withLatestFrom(this.store.pipe(select(selectPostsList))),
+    switchMap(([id, posts]) => {
+      const selectedUserPosts: IPost[] = posts && posts.length ? posts.filter( post => post.userId === +id) : null;
+      return of(new GetUserPostsSuccess(selectedUserPosts));
+    })
+  );
 }

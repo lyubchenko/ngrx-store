@@ -1,1 +1,18 @@
-{{post$ | async | json}}
+<main *ngIf="post$ | async as post">
+  <h1>{{post.title}}</h1>
+  <div class="text">
+    {{post.body}}
+  </div>
+
+  <section class="comments-container" *ngIf="comments$ | async as comments">
+    <h2 class="title">
+      Comments
+    </h2>
+    <div class="comments-list">
+      <app-comment-tile *ngFor="let comment of comments"
+                        class="comment"
+                        [comment]="comment">
+      </app-comment-tile>
+    </div>
+  </section>
+</main>

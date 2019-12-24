@@ -75,4 +75,22 @@ li {
   }
 }
 
+.posts {
+  &-container {
+    display: inline-block;
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  &-list {
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+
+    .post {
+      margin: 0 30px 30px 0;
+    }
+  }
+}
+
 

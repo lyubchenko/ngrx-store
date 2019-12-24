@@ -22,7 +22,7 @@ export class PostsPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new GetPosts());
+    // this.store.dispatch(new GetPosts());
   }
 
 }

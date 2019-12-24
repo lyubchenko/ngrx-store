@@ -35,4 +35,15 @@
       </div>
     </div>
   </section>
+  <section class="posts-container">
+    <h2 class="title">
+      Posts
+    </h2>
+    <div class="posts-list" *ngIf="posts$ | async as posts">
+      <app-post-tile *ngFor="let post of posts"
+                        class="post"
+                        [post]="post">
+      </app-post-tile>
+    </div>
+  </section>
 </main>
