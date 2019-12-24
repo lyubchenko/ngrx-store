@@ -18,9 +18,19 @@
     }
   }
 
+  .mat-cell,
+  .mat-header-cell {
+    padding-right: 0;
+    margin-right: 30px;
+  }
+
   .mat-cell {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    display: block;
+    padding-top: 21px;
+    padding-bottom: 21px;
+    box-sizing: border-box;
   }
 }
