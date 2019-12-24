@@ -3,14 +3,37 @@
   <mat-table [dataSource]="rowData">
 
     <ng-container *ngFor="let column of columnsToDisplayRow; let i = index" matColumnDef="{{column}}">
-      <mat-header-cell *matHeaderCellDef>{{columnsToDisplay[i]}}</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element[column]}}</mat-cell>
+      <ng-container [ngSwitch]="column">
+
+        <ng-container *ngSwitchCase="'email'">
+          <mat-header-cell *matHeaderCellDef>{{columnsToDisplay[i]}}</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <a href="mailto:{{element[column]}}">{{element[column]}}</a>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'address'">
+          <mat-header-cell *matHeaderCellDef>{{columnsToDisplay[i]}}</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element[column].zipcode}},
+            {{element[column].street}},
+            {{element[column].suite}},
+            {{element[column].city}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container *ngSwitchDefault>
+          <mat-header-cell *matHeaderCellDef>{{columnsToDisplay[i]}}</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element[column]}}</mat-cell>
+        </ng-container>
+
+      </ng-container>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="columnsToDisplayRow"></mat-header-row>
     <mat-row *matRowDef="let element; columns: columnsToDisplayRow" (click)="openUrl($event, element)"></mat-row>
 
   </mat-table>
-  <mat-paginator [pageSizeOptions]="[5]" [showFirstLastButtons]="false"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[pageSize]" [showFirstLastButtons]="false"></mat-paginator>
 </div>
 

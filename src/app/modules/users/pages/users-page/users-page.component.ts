@@ -16,6 +16,7 @@ export class UsersPageComponent implements OnInit {
   public columnsToDisplay: string[] = ['Name', 'Username', 'Email', 'Address'];
   public columnsToDisplayRow: string[] = ['name', 'username', 'email', 'address'];
   public url = '/users/';
+  public pageSize = 10;
 
   constructor(
     private store: Store<IAppState>

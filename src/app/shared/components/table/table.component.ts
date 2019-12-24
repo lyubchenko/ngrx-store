@@ -12,6 +12,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Input() columnsToDisplay: string[];
   @Input() columnsToDisplayRow: string[];
   @Input() url: string;
+  @Input() pageSize = 5;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   public _rowData;
   @Input()
@@ -33,8 +34,10 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   openUrl($event, element): void {
-    $event.preventDefault();
-    this.router.navigateByUrl(this.url + element.id);
+    if (!$event.target.hasAttribute('href')) {
+      $event.preventDefault();
+      this.router.navigateByUrl(this.url + element.id);
+    }
   }
 
 }

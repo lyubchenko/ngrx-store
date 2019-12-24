@@ -11,6 +11,7 @@
   .mat-row {
     border-top: 1px solid $BORDER_COLOR;
     border-bottom: 1px solid $BORDER_COLOR;
+    cursor: pointer;
 
     &:nth-child(even) {
       background: $GRAY;

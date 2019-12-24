@@ -1,6 +1,7 @@
 <main *ngIf="users$ | async as users">
   <app-table [rowData]="users"
              [url]="url"
+             [pageSize]="pageSize"
              [columnsToDisplay]="columnsToDisplay"
              [columnsToDisplayRow]="columnsToDisplayRow">
   </app-table>
