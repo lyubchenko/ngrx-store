@@ -11,20 +11,20 @@
     </div>
   </header>
   <section class="row info">
-    <ul class="col-left">
-      <li *ngIf="user.email">
+    <mat-list class="col-left info-list">
+      <mat-list-item *ngIf="user.email">
         <span>Email:</span>
         <a href="mailto:{{user.email}}">{{user.email}}</a>
-      </li>
-      <li *ngIf="user.phone">
+      </mat-list-item>
+      <mat-list-item *ngIf="user.phone">
         <span>Phone</span>
         <a href="tel:{{user.phone}}">{{user.phone}}</a>
-      </li>
-      <li *ngIf="user.website">
+      </mat-list-item>
+      <mat-list-item *ngIf="user.website">
         <span>Site</span>
         <a href="{{user.website}}" target="_blank">{{user.website}}</a>
-      </li>
-    </ul>
+      </mat-list-item>
+    </mat-list>
     <div class="col-right" *ngIf="user.address">
       <div class="address">
         {{user.address.zipcode}}, {{user.address.street}}, {{user.address.suite}}, {{user.address.city}}
