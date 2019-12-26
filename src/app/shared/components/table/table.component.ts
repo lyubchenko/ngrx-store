@@ -14,13 +14,13 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Input() url: string;
   @Input() pageSize = 5;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  public _rowData;
+  private rowDataPrivate;
   @Input()
   set rowData(value) {
-    this._rowData = new MatTableDataSource(value);
+    this.rowDataPrivate = new MatTableDataSource(value);
   }
   get rowData() {
-    return this._rowData;
+    return this.rowDataPrivate;
   }
 
   constructor(
@@ -30,7 +30,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   ngOnInit() {}
 
   ngAfterViewInit() {
-    this._rowData.paginator = this.paginator;
+    this.rowDataPrivate.paginator = this.paginator;
   }
 
   openUrl($event, element): void {

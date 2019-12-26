@@ -1,13 +1,13 @@
-import { IPost } from '@models/post.interface';
-import { IComment } from '@models/comment.interface';
+import { Post } from '@models/post.model';
+import { Comment } from '@models/comment.model';
 
-export interface IPostState {
-  posts: IPost[];
-  selectedPost: IPost;
-  selectedPostComments: IComment[];
+export interface PostState {
+  posts: Post[];
+  selectedPost: Post;
+  selectedPostComments: Comment[];
 }
 
-export const initialPostState: IPostState  = {
+export const initialPostState: PostState  = {
   posts: null,
   selectedPost: null,
   selectedPostComments: null

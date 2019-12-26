@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { GetUsers } from '@store/actions/user.actions';
-import { IAppState } from '@store/state/app.state';
+import { AppState } from '@store/state/app.state';
 import { selectUsersList } from '@store/selectors/user.selector';
 import { Observable } from 'rxjs';
-import { IUser } from '@models/user.interface';
+import { User } from '@models/user.model';
 
 @Component({
   selector: 'app-users-page',
@@ -12,14 +12,14 @@ import { IUser } from '@models/user.interface';
   styleUrls: ['./users-page.component.scss']
 })
 export class UsersPageComponent implements OnInit {
-  public users$: Observable<IUser[]> = this.store.pipe(select(selectUsersList));
+  public users$: Observable<User[]> = this.store.pipe(select(selectUsersList));
   public columnsToDisplay: string[] = ['Name', 'Username', 'Email', 'Address'];
   public columnsToDisplayRow: string[] = ['name', 'username', 'email', 'address'];
   public url = '/users/';
   public pageSize = 10;
 
   constructor(
-    private store: Store<IAppState>
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {

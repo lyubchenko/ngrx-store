@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { IAppState } from '@store/state/app.state';
+import { AppState } from '@store/state/app.state';
 import { Observable } from 'rxjs';
-import { IPost } from '@models/post.interface';
+import { Post } from '@models/post.model';
 import { selectSelectedPost, selectSelectedPostComments } from '@store/selectors/post.selector';
 import { GetPost, GetPostComments } from '@store/actions/post.actions';
-import { IComment } from '@models/comment.interface';
+import { Comment } from '@models/comment.model';
 
 @Component({
   selector: 'app-post-page',
@@ -15,12 +15,12 @@ import { IComment } from '@models/comment.interface';
 })
 export class PostPageComponent implements OnInit {
   private postId: number;
-  public post$: Observable<IPost> = this.store.pipe(select(selectSelectedPost));
-  public comments$: Observable<IComment[]> = this.store.pipe(select(selectSelectedPostComments));
+  public post$: Observable<Post> = this.store.pipe(select(selectSelectedPost));
+  public comments$: Observable<Comment[]> = this.store.pipe(select(selectSelectedPostComments));
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private store: Store<IAppState>
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {

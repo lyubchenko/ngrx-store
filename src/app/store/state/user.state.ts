@@ -1,13 +1,13 @@
-import { IUser } from '@models/user.interface';
-import { IPost } from '@models/post.interface';
+import { User } from '@models/user.model';
+import { Post } from '@models/post.model';
 
-export interface IUserState {
-  users: IUser[];
-  selectedUser: IUser;
-  selectedUserPosts: IPost[];
+export interface UserState {
+  users: User[];
+  selectedUser: User;
+  selectedUserPosts: Post[];
 }
 
-export const initialUserState: IUserState = {
+export const initialUserState: UserState = {
   users: null,
   selectedUser: null,
   selectedUserPosts: null

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { IAppState } from '@store/state/app.state';
+import { AppState } from '@store/state/app.state';
 import { Observable } from 'rxjs';
-import { IUser } from '@models/user.interface';
+import { User } from '@models/user.model';
 import { selectSelectedUser, selectSelectedUserPosts } from '@store/selectors/user.selector';
 import { GetUser, GetUserPosts } from '@store/actions/user.actions';
-import { IPost } from '@models/post.interface';
+import { Post } from '@models/post.model';
 
 @Component({
   selector: 'app-user-page',
@@ -15,12 +15,12 @@ import { IPost } from '@models/post.interface';
 })
 export class UserPageComponent implements OnInit {
   private userId: number;
-  public user$: Observable<IUser> = this.store.pipe(select(selectSelectedUser));
-  public posts$: Observable<IPost[]> = this.store.pipe(select(selectSelectedUserPosts));
+  public user$: Observable<User> = this.store.pipe(select(selectSelectedUser));
+  public posts$: Observable<Post[]> = this.store.pipe(select(selectSelectedUserPosts));
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private store: Store<IAppState>
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {

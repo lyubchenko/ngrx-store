@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IPost } from '@models/post.interface';
+import { Post } from '@models/post.model';
 
 @Component({
   selector: 'app-post-tile',
@@ -7,5 +7,5 @@ import { IPost } from '@models/post.interface';
   styleUrls: ['./post-tile.component.scss']
 })
 export class PostTileComponent  {
-  @Input() post: IPost;
+  @Input() post: Post;
 }

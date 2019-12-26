@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IComment } from '@models/comment.interface';
+import { Comment } from '@models/comment.model';
 
 @Component({
   selector: 'app-comment-tile',
@@ -7,7 +7,7 @@ import { IComment } from '@models/comment.interface';
   styleUrls: ['./comment-tile.component.scss']
 })
 export class CommentTileComponent {
-  @Input() comment: IComment;
+  @Input() comment: Comment;
 
   constructor() { }
 }

@@ -1,7 +1,7 @@
 import { PostActions, EPostActions } from '@store/actions/post.actions';
-import { initialPostState, IPostState} from '@store/state/post.state';
+import { initialPostState, PostState} from '@store/state/post.state';
 
-export const postReducers = (state = initialPostState, action: PostActions): IPostState => {
+export const postReducers = (state = initialPostState, action: PostActions): PostState => {
   switch (action.type) {
     case EPostActions.GetPostsSuccess: {
       return {

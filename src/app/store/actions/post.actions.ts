@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
-import { IPost } from '@models/post.interface';
-import { IComment } from '@models/comment.interface';
+import { Post } from '@models/post.model';
+import { Comment } from '@models/comment.model';
 
 export enum EPostActions {
   GetPosts = '[Post] Get Posts',
@@ -18,7 +18,7 @@ export class GetPosts implements Action {
 
 export class GetPostsSuccess implements Action {
   public readonly type = EPostActions.GetPostsSuccess;
-  constructor(public payload: IPost[]) {}
+  constructor(public payload: Post[]) {}
 }
 
 export class GetPost implements Action {
@@ -28,7 +28,7 @@ export class GetPost implements Action {
 
 export class GetPostSuccess implements Action {
   public readonly type = EPostActions.GetPostSuccess;
-  constructor(public payload: IPost) {}
+  constructor(public payload: Post) {}
 }
 
 export class GetPostComments implements Action {
@@ -38,7 +38,7 @@ export class GetPostComments implements Action {
 
 export class GetPostCommentsSuccess implements Action {
   public readonly type = EPostActions.GetPostCommentsSuccess;
-  constructor(public payload: IComment[]) {}
+  constructor(public payload: Comment[]) {}
 }
 
 export type PostActions = GetPosts | GetPostsSuccess | GetPost | GetPostSuccess | GetPostComments | GetPostCommentsSuccess;

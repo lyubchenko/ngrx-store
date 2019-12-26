@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { of } from 'rxjs';
 import { switchMap, map, withLatestFrom } from 'rxjs/operators';
 
-import { IAppState } from '@store/state/app.state';
+import { AppState } from '@store/state/app.state';
 import {
   GetPost,
   GetPostSuccess,
@@ -16,8 +16,8 @@ import {
 } from '@store/actions/post.actions';
 import { PostService } from '@services/post/post.service';
 import { selectPostsList } from '@store/selectors/post.selector';
-import { IPost} from '@models/post.interface';
-import { IComment } from '@models/comment.interface';
+import { Post} from '@models/post.model';
+import { Comment } from '@models/comment.model';
 
 @Injectable()
 export class PostEffects {
@@ -36,19 +36,19 @@ export class PostEffects {
   getPosts$ = this.actions$.pipe(
     ofType<GetPosts>(EPostActions.GetPosts),
     switchMap( () => this.postService.getPosts()),
-    switchMap( (posts: IPost[]) => of(new GetPostsSuccess(posts)))
+    switchMap( (posts: Post[]) => of(new GetPostsSuccess(posts)))
   );
 
   @Effect()
   getPostComments$ = this.actions$.pipe(
     ofType<GetPostComments>(EPostActions.GetPostComments),
     switchMap( (id) => this.postService.getPostComments(id)),
-    switchMap( (comments: IComment[]) => of(new GetPostCommentsSuccess(comments)))
+    switchMap( (comments: Comment[]) => of(new GetPostCommentsSuccess(comments)))
   );
 
   constructor(
     private postService: PostService,
     private actions$: Actions,
-    private store: Store<IAppState>
+    private store: Store<AppState>
   ) {}
 }

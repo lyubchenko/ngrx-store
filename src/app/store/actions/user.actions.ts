@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
-import { IUser } from '@models/user.interface';
-import { IPost } from '@models/post.interface';
+import { User } from '@models/user.model';
+import { Post } from '@models/post.model';
 
 export enum EUserActions {
   GetUsers = '[User] Get Users',
@@ -18,7 +18,7 @@ export class GetUsers implements Action {
 
 export class GetUsersSuccess implements Action {
   public readonly type = EUserActions.GetUsersSuccess;
-  constructor(public payload: IUser[]) {}
+  constructor(public payload: User[]) {}
 }
 
 export class GetUser implements Action {
@@ -28,7 +28,7 @@ export class GetUser implements Action {
 
 export class GetUserSuccess implements Action {
   public readonly type = EUserActions.GetUserSuccess;
-  constructor(public payload: IUser) {}
+  constructor(public payload: User) {}
 }
 
 export class GetUserPosts implements Action {
@@ -38,7 +38,7 @@ export class GetUserPosts implements Action {
 
 export class GetUserPostsSuccess implements Action {
   public readonly type = EUserActions.GetUserPostsSuccess;
-  constructor(public payload: IPost[]) {}
+  constructor(public payload: Post[]) {}
 }
 
 export type UserActions = GetUsers | GetUsersSuccess | GetUser | GetUserSuccess | GetUserPosts | GetUserPostsSuccess;

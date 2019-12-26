@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { IPost } from '@models/post.interface';
-import { IComment } from '@models/comment.interface';
+import { Post } from '@models/post.model';
+import { Comment } from '@models/comment.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,11 +13,11 @@ export class PostService {
     private http: HttpClient,
   ) {}
 
-  getPosts(): Observable<IPost[]> {
-    return this.http.get<IPost[]>('https://jsonplaceholder.typicode.com/posts');
+  getPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts');
   }
 
-  getPostComments(id): Observable<IComment[]> {
-    return this.http.get<IComment[]>(`https://jsonplaceholder.typicode.com/posts/${id}/comments?_limit=6`);
+  getPostComments(id): Observable<Comment[]> {
+    return this.http.get<Comment[]>(`https://jsonplaceholder.typicode.com/posts/${id}/comments?_limit=6`);
   }
 }

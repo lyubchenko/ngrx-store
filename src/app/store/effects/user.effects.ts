@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { of } from 'rxjs';
 import { switchMap, map, withLatestFrom } from 'rxjs/operators';
 
-import { IAppState } from '@store/state/app.state';
+import { AppState } from '@store/state/app.state';
 import {
   GetUserSuccess,
   GetUser,
@@ -16,8 +16,8 @@ import {
 } from '@store/actions/user.actions';
 import { UserService } from '@services/user/user.service';
 import { selectUsersList } from '@store/selectors/user.selector';
-import { IUser } from '@models/user.interface';
-import { IPost } from '@models/post.interface';
+import { User } from '@models/user.model';
+import { Post } from '@models/post.model';
 import { selectPostsList } from '@store/selectors/post.selector';
 
 @Injectable()
@@ -25,7 +25,7 @@ export class UserEffects {
   constructor(
     private userService: UserService,
     private actions$: Actions,
-    private store: Store<IAppState>
+    private store: Store<AppState>
   ) {}
 
   @Effect()
@@ -43,7 +43,7 @@ export class UserEffects {
   getUsers$ = this.actions$.pipe(
     ofType<GetUsers>(EUserActions.GetUsers),
     switchMap( () => this.userService.getUsers()),
-    switchMap((users: IUser[]) => of(new GetUsersSuccess(users)))
+    switchMap((users: User[]) => of(new GetUsersSuccess(users)))
   );
 
   @Effect()
@@ -52,7 +52,7 @@ export class UserEffects {
     map(action => action.payload),
     withLatestFrom(this.store.pipe(select(selectPostsList))),
     switchMap(([id, posts]) => {
-      const selectedUserPosts: IPost[] = posts && posts.length ? posts.filter( post => post.userId === +id) : null;
+      const selectedUserPosts: Post[] = posts && posts.length ? posts.filter( post => post.userId === +id) : null;
       return of(new GetUserPostsSuccess(selectedUserPosts));
     })
   );

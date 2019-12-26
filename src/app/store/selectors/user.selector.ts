@@ -1,23 +1,23 @@
 import { createSelector } from '@ngrx/store';
 
-import { IAppState } from '@store/state/app.state';
-import { IUserState } from '@store/state/user.state';
-import { IPostState } from '@store/state/post.state';
+import { AppState } from '@store/state/app.state';
+import { UserState } from '@store/state/user.state';
+import { PostState } from '@store/state/post.state';
 
-const selectUsers = (state: IAppState) => state.users;
-const selectPosts = (state: IAppState) => state.posts;
+const selectUsers = (state: AppState) => state.users;
+const selectPosts = (state: AppState) => state.posts;
 
 export const selectUsersList = createSelector(
   selectUsers,
-  (state: IUserState) => state.users
+  (state: UserState) => state.users
 );
 
 export const selectSelectedUser = createSelector(
   selectUsers,
-  (state: IUserState) => state.selectedUser
+  (state: UserState) => state.selectedUser
 );
 
 export const selectSelectedUserPosts = createSelector(
   selectUsers,
-  (state: IUserState) => state.selectedUserPosts
+  (state: UserState) => state.selectedUserPosts
 );

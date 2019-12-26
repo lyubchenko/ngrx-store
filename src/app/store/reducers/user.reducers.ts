@@ -1,7 +1,7 @@
 import { EUserActions, UserActions } from '@store/actions/user.actions';
-import { initialUserState, IUserState } from '@store/state/user.state';
+import { initialUserState, UserState } from '@store/state/user.state';
 
-export const userReducers = (state = initialUserState, action: UserActions): IUserState => {
+export const userReducers = (state = initialUserState, action: UserActions): UserState => {
   switch (action.type) {
     case EUserActions.GetUsersSuccess: {
       return {
